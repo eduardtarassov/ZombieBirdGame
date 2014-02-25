@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager" forced_jdk="true">
+    <libelement value="jar://$MODULE_DIR$/ZombieBird/libs/gdx.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/ZombieBird-android/libs/gdx-backend-android.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/ZombieBird/libs/tween-engine-api.jar!/" />
+    <src_description expected_position="1">
+      <src_folder value="file://$MODULE_DIR$/ZombieBird-android/src" expected_position="0" />
+      <src_folder value="file://$MODULE_DIR$/ZombieBird-android/gen" expected_position="1" />
+      <src_folder value="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK" expected_position="4" />
+      <src_folder value="com.android.ide.eclipse.adt.LIBRARIES" expected_position="5" />
+    </src_description>
+  </component>
+  <component name="FacetManager">
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/ZombieBird-android/gen" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/ZombieBird-android/gen" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/ZombieBird-android/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/ZombieBird-android/res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/ZombieBird-android/assets" />
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/ZombieBird-android/libs" />
+        <resOverlayFolders>
+          <path>/ZombieBird-android/res-overlay</path>
+        </resOverlayFolders>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/ZombieBird-android/bin/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/ZombieBird-android">
+      <sourceFolder url="file://$MODULE_DIR$/ZombieBird-android/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ZombieBird-android/gen" isTestSource="false" generated="true" />
+    </content>
+    <orderEntry type="jdk" jdkName="Android 4.4 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="ZombieBird" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="gdx.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ZombieBird/libs/gdx.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/ZombieBird/libs/gdx-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="gdx-backend-android.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ZombieBird-android/libs/gdx-backend-android.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/ZombieBird-android/libs/gdx-backend-android-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="tween-engine-api.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ZombieBird/libs/tween-engine-api.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/ZombieBird/libs/tween-engine-api-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>
+

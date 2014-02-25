@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ZombieBird.iml" filepath="$PROJECT_DIR$/ZombieBird.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ZombieBird-android.iml" filepath="$PROJECT_DIR$/ZombieBird-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ZombieBird-desktop.iml" filepath="$PROJECT_DIR$/ZombieBird-desktop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ZombieBird-html.iml" filepath="$PROJECT_DIR$/ZombieBird-html.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ZombieBird-robovm.iml" filepath="$PROJECT_DIR$/ZombieBird-robovm.iml" />
+    </modules>
+  </component>
+</project>
+
