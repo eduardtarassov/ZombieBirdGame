@@ -8,8 +8,8 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "ZombieBird";
 		cfg.useGL20 = false;
-		cfg.width = 480;
-		cfg.height = 320;
+		cfg.width = 272;
+		cfg.height = 408;
 		
 		new LwjglApplication(new ZBGame(), cfg);
 	}
