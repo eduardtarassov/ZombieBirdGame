@@ -15,6 +15,7 @@ public class GameScreen implements Screen {
 
     private GameWorld world;
     private GameRenderer renderer;
+    private float runTime = 0;
 
     public GameScreen() {
         float screenWidth = Gdx.graphics.getWidth();
@@ -25,7 +26,7 @@ public class GameScreen implements Screen {
         int midPointY = (int) (gameHeight / 2);
 
         world = new GameWorld(midPointY); // initialize world
-        renderer = new GameRenderer(world); // initialize renderer and setting for the GameRenderer the reference to the GameWorld
+        renderer = new GameRenderer(world, (int) gameHeight, midPointY); // initialize renderer and setting for the GameRenderer the reference to the GameWorld
 
         Gdx.input.setInputProcessor(new InputHandler(world.getBird()));
     }
@@ -41,9 +42,9 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(10/255.0f, 15/255.0f, 230/255.0f, 1f);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
         System.out.println(1/delta);    */
-
+        runTime += delta;
         world.update(delta);
-        renderer.render();
+        renderer.render(runTime);
     }
 
     @Override
