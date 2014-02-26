@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.eduardtarassov.gameworld.GameRenderer;
 import com.eduardtarassov.gameworld.GameWorld;
+import com.eduardtarassov.zbhelpers.InputHandler;
 
 /**
  * Created by Eduard on 2/25/14.
@@ -16,9 +17,17 @@ public class GameScreen implements Screen {
     private GameRenderer renderer;
 
     public GameScreen() {
-        System.out.println("GameScreen Attached");
-        world = new GameWorld(); // initialize world
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeight = Gdx.graphics.getHeight();
+        float gameWidth = 136;
+        float gameHeight = screenHeight / (screenWidth / gameWidth);
+
+        int midPointY = (int) (gameHeight / 2);
+
+        world = new GameWorld(midPointY); // initialize world
         renderer = new GameRenderer(world); // initialize renderer and setting for the GameRenderer the reference to the GameWorld
+
+        Gdx.input.setInputProcessor(new InputHandler(world.getBird()));
     }
 
      /*

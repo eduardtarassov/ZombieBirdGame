@@ -1,6 +1,7 @@
 package com.eduardtarassov.gameworld;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.eduardtarassov.gameobjects.Bird;
 
 /**
  * Created by Eduard on 2/25/14.
@@ -8,18 +9,17 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class GameWorld {
 
-    private Rectangle rect = new Rectangle(0, 0, 17, 12);  // Parameters are: X Coordinates, Y Coordinates, Width, Height
+    private Bird bird;
 
-
-    public void update(float delta) {
-        System.out.println("GameWorld - update");
-        rect.x++;
-        if (rect.x > 137) {
-            rect.x = 0;
-        }
+    public GameWorld(int midPointY){
+             bird = new Bird(33, midPointY - 5, 17, 12);//initialize bird here
     }
 
-    public Rectangle getRect() {
-        return rect;
+    public void update(float delta) {
+             bird.update(delta);
+    }
+
+    public Bird getBird(){
+        return bird;
     }
 }
