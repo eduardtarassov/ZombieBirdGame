@@ -1,5 +1,8 @@
 package com.eduardtarassov.gameobjects;
 
+import com.eduardtarassov.gameworld.GameWorld;
+import com.eduardtarassov.zbhelpers.AssetLoader;
+
 /**
  * Created by Eduard on 2/27/14.
  * This class takes care of creating these Grass and Pipe objects, updating them, and handling reset.
@@ -8,6 +11,7 @@ public class ScrollHandler {
     // ScrollHandler will create all five objects that we need.
     private Grass frontGrass, backGrass;
     private Pipe pipe1, pipe2, pipe3;
+    private GameWorld gameWorld;
 
     // ScrollHandler will use the constants below to determine
     // how fast we need to scroll and also determine
@@ -19,7 +23,9 @@ public class ScrollHandler {
 
     // Constructor receives a float that tells us where we need to create our
     // Grass and Pipe objects.
-    public ScrollHandler(float yPos) {
+    public ScrollHandler(GameWorld gameWorld, float yPos) {
+        this.gameWorld = gameWorld;
+
         //we initialize scrollable objects
         frontGrass = new Grass(0, yPos, 143, 11, SCROLL_SPEED);
         backGrass = new Grass(frontGrass.getTailX(), yPos, 143, 11, SCROLL_SPEED);
@@ -68,7 +74,34 @@ public class ScrollHandler {
 
     // Return true if ANY pipe hits the bird.
     public boolean collides(Bird bird) {
-        return (pipe1.collides(bird) || pipe2.collides(bird) || pipe3.collides(bird));
+        if (!pipe1.isScored()
+                && pipe1.getX() + (pipe1.getWidth() / 2) < bird.getX()
+                + bird.getWidth()) {
+            addScore(1);
+            pipe1.setScored(true);
+            AssetLoader.coin.play();
+        } else if (!pipe2.isScored()
+                && pipe2.getX() + (pipe2.getWidth() / 2) < bird.getX()
+                + bird.getWidth()) {
+            addScore(1);
+            pipe2.setScored(true);
+            AssetLoader.coin.play();
+
+        } else if (!pipe3.isScored()
+                && pipe3.getX() + (pipe3.getWidth() / 2) < bird.getX()
+                + bird.getWidth()) {
+            addScore(1);
+            pipe3.setScored(true);
+            AssetLoader.coin.play();
+
+        }
+
+        return (pipe1.collides(bird) || pipe2.collides(bird) || pipe3
+                .collides(bird));
+    }
+
+    private void addScore(int increment) {
+        gameWorld.addScore(increment);
     }
 
     // The getters for our five instance variables

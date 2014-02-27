@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
@@ -16,7 +17,8 @@ public class AssetLoader {
     public static Animation birdAnimation;
     public static TextureRegion bird, birdDown, birdUp;
     public static TextureRegion skullUp, skullDown, bar;
-    public static Sound dead;
+    public static Sound dead, flap, coin;
+    public static BitmapFont font, shadow;
 
     public static void load() {
 
@@ -58,10 +60,22 @@ public class AssetLoader {
         bar.flip(false, true);
 
         dead = Gdx.audio.newSound(Gdx.files.internal("ZombieBird-android/assets/data/dead.wav"));
+        flap = Gdx.audio.newSound(Gdx.files.internal("ZombieBird-android/assets/data/flap.wav"));
+        coin = Gdx.audio.newSound(Gdx.files.internal("ZombieBird-android/assets/data/coin.wav"));
+
+        font = new BitmapFont(Gdx.files.internal("ZombieBird-android/assets/data/text.fnt"));
+        font.setScale(.25f, -.25f);
+        shadow = new BitmapFont(Gdx.files.internal("ZombieBird-android/assets/data/shadow.fnt"));
+        shadow.setScale(.25f, -.25f);
     }
 
     public static void dispose() {
         // We must dispose of the texture when we are finished.
         texture.dispose();
+        dead.dispose();
+        flap.dispose();
+        coin.dispose();
+        font.dispose();
+        shadow.dispose();
     }
 }
