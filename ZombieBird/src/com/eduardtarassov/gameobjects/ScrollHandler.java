@@ -24,9 +24,10 @@ public class ScrollHandler {
         frontGrass = new Grass(0, yPos, 143, 11, SCROLL_SPEED);
         backGrass = new Grass(frontGrass.getTailX(), yPos, 143, 11, SCROLL_SPEED);
 
-        pipe1 = new Pipe(210, 0, 22, 60, SCROLL_SPEED);
-        pipe2 = new Pipe(pipe1.getTailX() + PIPE_GAP, 0, 22, 70, SCROLL_SPEED);
-        pipe3 = new Pipe(pipe2.getTailX() + PIPE_GAP, 0, 22, 60, SCROLL_SPEED);
+        pipe1 = new Pipe(210, 0, 22, 60, SCROLL_SPEED, yPos);
+        pipe2 = new Pipe(pipe1.getTailX() + PIPE_GAP, 0, 22, 70, SCROLL_SPEED, yPos);
+        pipe3 = new Pipe(pipe2.getTailX() + PIPE_GAP, 0, 22, 60, SCROLL_SPEED, yPos);
+
     }
 
     public void update(float delta) {
@@ -56,6 +57,18 @@ public class ScrollHandler {
             backGrass.reset(frontGrass.getTailX());
 
         }
+    }
+
+    public void stop() {
+        frontGrass.stop();
+        backGrass.stop();
+        pipe1.stop();
+        pipe2.stop();
+        pipe3.stop();}
+
+    // Return true if ANY pipe hits the bird.
+    public boolean collides(Bird bird) {
+        return (pipe1.collides(bird) || pipe2.collides(bird) || pipe3.collides(bird));
     }
 
     // The getters for our five instance variables

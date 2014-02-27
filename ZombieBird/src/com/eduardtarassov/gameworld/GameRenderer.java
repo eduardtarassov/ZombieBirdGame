@@ -1,6 +1,7 @@
 package com.eduardtarassov.gameworld;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -89,7 +90,6 @@ public class GameRenderer {
 
     public void render(float runTime) {  //we need this parameter to determine which frame the bird animation should display. The Animation object will use this value (and the previously determined frame duration) to determine which TextureRegion to display.
 
-
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
@@ -123,8 +123,6 @@ public class GameRenderer {
         // 3. Draw Skulls (requires transparency)
         drawSkulls();
 
-        batcher.enableBlending();
-
         if (bird.shouldntFlap()) {
             batcher.draw(birdMid, bird.getX(), bird.getY(),
                     bird.getWidth() / 2.0f, bird.getHeight() / 2.0f,
@@ -139,7 +137,48 @@ public class GameRenderer {
 
         batcher.end();
 
+        /*shapeRenderer.begin(ShapeType.Filled);
+        shapeRenderer.setColor(Color.RED);
+        shapeRenderer.circle(bird.getBoundingCircle().x,
+                bird.getBoundingCircle().y, bird.getBoundingCircle().radius);   */
 
+        /*
+         * Excuse the mess below. Temporary code for testing bounding
+         * rectangles.
+         */
+        // Bar up for pipes 1 2 and 3
+       /* shapeRenderer.rect(pipe1.getBarUp().x, pipe1.getBarUp().y,
+                pipe1.getBarUp().width, pipe1.getBarUp().height);
+        shapeRenderer.rect(pipe2.getBarUp().x, pipe2.getBarUp().y,
+                pipe2.getBarUp().width, pipe2.getBarUp().height);
+        shapeRenderer.rect(pipe3.getBarUp().x, pipe3.getBarUp().y,
+                pipe3.getBarUp().width, pipe3.getBarUp().height);
+
+        // Bar down for pipes 1 2 and 3
+        shapeRenderer.rect(pipe1.getBarDown().x, pipe1.getBarDown().y,
+                pipe1.getBarDown().width, pipe1.getBarDown().height);
+        shapeRenderer.rect(pipe2.getBarDown().x, pipe2.getBarDown().y,
+                pipe2.getBarDown().width, pipe2.getBarDown().height);
+        shapeRenderer.rect(pipe3.getBarDown().x, pipe3.getBarDown().y,
+                pipe3.getBarDown().width, pipe3.getBarDown().height);
+
+        // Skull up for Pipes 1 2 and 3
+        shapeRenderer.rect(pipe1.getSkullUp().x, pipe1.getSkullUp().y,
+                pipe1.getSkullUp().width, pipe1.getSkullUp().height);
+        shapeRenderer.rect(pipe2.getSkullUp().x, pipe2.getSkullUp().y,
+                pipe2.getSkullUp().width, pipe2.getSkullUp().height);
+        shapeRenderer.rect(pipe3.getSkullUp().x, pipe3.getSkullUp().y,
+                pipe3.getSkullUp().width, pipe3.getSkullUp().height);
+
+        // Skull down for Pipes 1 2 and 3
+        shapeRenderer.rect(pipe1.getSkullDown().x, pipe1.getSkullDown().y,
+                pipe1.getSkullDown().width, pipe1.getSkullDown().height);
+        shapeRenderer.rect(pipe2.getSkullDown().x, pipe2.getSkullDown().y,
+                pipe2.getSkullDown().width, pipe2.getSkullDown().height);
+        shapeRenderer.rect(pipe3.getSkullDown().x, pipe3.getSkullDown().y,
+                pipe3.getSkullDown().width, pipe3.getSkullDown().height); */
+
+        //shapeRenderer.end();
     }
 
     private void drawGrass() {

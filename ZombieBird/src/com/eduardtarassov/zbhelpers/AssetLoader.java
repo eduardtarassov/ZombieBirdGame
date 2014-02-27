@@ -1,6 +1,7 @@
 package com.eduardtarassov.zbhelpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -12,11 +13,10 @@ public class AssetLoader {
 
     public static Texture texture;
     public static TextureRegion bg, grass;
-
     public static Animation birdAnimation;
     public static TextureRegion bird, birdDown, birdUp;
-
     public static TextureRegion skullUp, skullDown, bar;
+    public static Sound dead;
 
     public static void load() {
 
@@ -57,6 +57,7 @@ public class AssetLoader {
         bar = new TextureRegion(texture, 136, 16, 22, 3);
         bar.flip(false, true);
 
+        dead = Gdx.audio.newSound(Gdx.files.internal("ZombieBird-android/assets/data/dead.wav"));
     }
 
     public static void dispose() {

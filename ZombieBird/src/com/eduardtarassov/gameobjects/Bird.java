@@ -1,5 +1,6 @@
 package com.eduardtarassov.gameobjects;
 
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -18,17 +19,21 @@ public class Bird {
     private int width;
     private int height;
 
+    private Circle boundingCircle;
+
     public Bird(float x, float y, int width, int height) {
         this.width = width;
         this.height = height;
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 460);
+        boundingCircle = new Circle();
     }
 
     public void update(float delta) {
 
         velocity.add(acceleration.cpy().scl(delta));  //We add our scaled acceleration vector to our velocity vector. In other words we multiply the acceleration vector by the delta, which is the amount of time that has passed since the update method was previously called.
+        boundingCircle.set(position.x + 9, position.y + 6, 6.5f);
 
         if (velocity.y > 200) {  //Here we set the Bird max velocity cap.
             velocity.y = 200;
@@ -90,5 +95,7 @@ public class Bird {
     public float getRotation() {
         return rotation;
     }
+
+    public Circle getBoundingCircle() { return boundingCircle; }
 
 }
