@@ -147,6 +147,7 @@ public class GameRenderer {
 
         batcher.end();
 
+
         /*shapeRenderer.begin(ShapeType.Filled);
         shapeRenderer.setColor(Color.RED);
         shapeRenderer.circle(bird.getBoundingCircle().x,
