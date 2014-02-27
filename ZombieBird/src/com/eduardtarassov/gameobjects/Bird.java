@@ -18,7 +18,7 @@ public class Bird {
     private int width;
     private int height;
 
-    public Bird(float x, float y, int width, int height){
+    public Bird(float x, float y, int width, int height) {
         this.width = width;
         this.height = height;
         position = new Vector2(x, y);
@@ -36,7 +36,36 @@ public class Bird {
 
         position.add(velocity.cpy().scl(delta));  //We add our scaled velocity to the bird's position (this gives us new position).
 
+        // Rotate counterclockwise
+        if (velocity.y < 0) {
+            rotation -= 600 * delta;
+
+            if (rotation < -20) {
+                rotation = -20;
+            }
+        }
+
+        // Rotate clockwise
+        if (isFalling()) {
+            rotation += 480 * delta;
+            if (rotation > 90) {
+                rotation = 90;
+            }
+
+        }
     }
+
+    //We will use the isFalling method to decide when the bird should begin rotating downwards.
+    public boolean isFalling() {
+        return velocity.y > 110;
+
+    }
+
+    //We will use the shouldntFlap method to determine when the bird should stop animating.
+    public boolean shouldntFlap() {
+        return velocity.y > 70;
+    }
+
 
     public void onClick() {
         velocity.y = -140;
