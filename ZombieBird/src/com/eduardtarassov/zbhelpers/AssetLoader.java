@@ -1,6 +1,7 @@
 package com.eduardtarassov.zbhelpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -19,6 +20,7 @@ public class AssetLoader {
     public static TextureRegion skullUp, skullDown, bar;
     public static Sound dead, flap, coin;
     public static BitmapFont font, shadow;
+    public static Preferences prefs;
 
     public static void load() {
 
@@ -47,7 +49,7 @@ public class AssetLoader {
         birdUp = new TextureRegion(texture, 170, 0, 17, 12);
         birdUp.flip(false, true);
 
-        TextureRegion[] birds = { birdDown, bird, birdUp }; //creating an arrey of TextureRegion objects
+        TextureRegion[] birds = {birdDown, bird, birdUp}; //creating an arrey of TextureRegion objects
         birdAnimation = new Animation(0.06f, birds); // Creating a new Animation in which each frame is 0.06 seconds long, using the above array.
         birdAnimation.setPlayMode(Animation.LOOP_PINGPONG); // Sets play mode to be ping pong, in which we will see a bounce.
 
@@ -67,6 +69,15 @@ public class AssetLoader {
         font.setScale(.25f, -.25f);
         shadow = new BitmapFont(Gdx.files.internal("ZombieBird-android/assets/data/shadow.fnt"));
         shadow.setScale(.25f, -.25f);
+
+
+        // Create (or retrieve existing) preferences file
+        prefs = Gdx.app.getPreferences("ZombieBird");
+
+// Provide default high score of 0
+        if (!prefs.contains("highScore")) {
+            prefs.putInteger("highScore", 0);
+        }
     }
 
     public static void dispose() {
@@ -77,5 +88,16 @@ public class AssetLoader {
         coin.dispose();
         font.dispose();
         shadow.dispose();
+    }
+
+    // Receives an integer and maps it to the String highScore in prefs
+    public static void setHighScore(int val) {
+        prefs.putInteger("highScore", val);
+        prefs.flush();
+    }
+
+    // Retrieves the current high score
+    public static int getHighScore() {
+        return prefs.getInteger("highScore");
     }
 }

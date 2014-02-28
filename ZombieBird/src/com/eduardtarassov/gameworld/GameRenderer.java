@@ -88,7 +88,7 @@ public class GameRenderer {
         bar = AssetLoader.bar;
     }
 
-    public void render(float runTime) {  //we need this parameter to determine which frame the bird animation should display. The Animation object will use this value (and the previously determined frame duration) to determine which TextureRegion to display.
+    public void render(float runTime) {
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -135,61 +135,42 @@ public class GameRenderer {
                     1, 1, bird.getRotation());
         }
 
-        // AssetLoader.shadow.draw(batcher, "hello world", x, y);
 
-        // Convert integer into String
-        String score = myWorld.getScore() + "";
+        // TEMPORARY CODE! We will fix this section later:
 
-// Draw shadow first
-        AssetLoader.shadow.draw(batcher, "" + myWorld.getScore(), (136 / 2) - (3 * score.length()), 12);
-// Draw text
-        AssetLoader.font.draw(batcher, "" + myWorld.getScore(), (136 / 2) - (3 * score.length() - 1), 11);
+        if (myWorld.isReady()) {
+            // Draw shadow first
+            AssetLoader.shadow.draw(batcher, "Touch me", (136 / 2)
+                    - (42), 76);
+            // Draw text
+            AssetLoader.font.draw(batcher, "Touch me", (136 / 2)
+                    - (42 - 1), 75);
+        } else {
+
+            if (myWorld.isGameOver()) {
+                AssetLoader.shadow.draw(batcher, "Game Over", 25, 56);
+                AssetLoader.font.draw(batcher, "Game Over", 24, 55);
+
+                AssetLoader.shadow.draw(batcher, "Try again?", 23, 76);
+                AssetLoader.font.draw(batcher, "Try again?", 24, 75);
+
+
+
+            }
+
+            // Convert integer into String
+            String score = myWorld.getScore() + "";
+
+            // Draw shadow first
+            AssetLoader.shadow.draw(batcher, "" + myWorld.getScore(), (136 / 2)
+                    - (3 * score.length()), 12);
+            // Draw text
+            AssetLoader.font.draw(batcher, "" + myWorld.getScore(), (136 / 2)
+                    - (3 * score.length() - 1), 11);
+        }
 
         batcher.end();
 
-
-        /*shapeRenderer.begin(ShapeType.Filled);
-        shapeRenderer.setColor(Color.RED);
-        shapeRenderer.circle(bird.getBoundingCircle().x,
-                bird.getBoundingCircle().y, bird.getBoundingCircle().radius);   */
-
-        /*
-         * Excuse the mess below. Temporary code for testing bounding
-         * rectangles.
-         */
-        // Bar up for pipes 1 2 and 3
-       /* shapeRenderer.rect(pipe1.getBarUp().x, pipe1.getBarUp().y,
-                pipe1.getBarUp().width, pipe1.getBarUp().height);
-        shapeRenderer.rect(pipe2.getBarUp().x, pipe2.getBarUp().y,
-                pipe2.getBarUp().width, pipe2.getBarUp().height);
-        shapeRenderer.rect(pipe3.getBarUp().x, pipe3.getBarUp().y,
-                pipe3.getBarUp().width, pipe3.getBarUp().height);
-
-        // Bar down for pipes 1 2 and 3
-        shapeRenderer.rect(pipe1.getBarDown().x, pipe1.getBarDown().y,
-                pipe1.getBarDown().width, pipe1.getBarDown().height);
-        shapeRenderer.rect(pipe2.getBarDown().x, pipe2.getBarDown().y,
-                pipe2.getBarDown().width, pipe2.getBarDown().height);
-        shapeRenderer.rect(pipe3.getBarDown().x, pipe3.getBarDown().y,
-                pipe3.getBarDown().width, pipe3.getBarDown().height);
-
-        // Skull up for Pipes 1 2 and 3
-        shapeRenderer.rect(pipe1.getSkullUp().x, pipe1.getSkullUp().y,
-                pipe1.getSkullUp().width, pipe1.getSkullUp().height);
-        shapeRenderer.rect(pipe2.getSkullUp().x, pipe2.getSkullUp().y,
-                pipe2.getSkullUp().width, pipe2.getSkullUp().height);
-        shapeRenderer.rect(pipe3.getSkullUp().x, pipe3.getSkullUp().y,
-                pipe3.getSkullUp().width, pipe3.getSkullUp().height);
-
-        // Skull down for Pipes 1 2 and 3
-        shapeRenderer.rect(pipe1.getSkullDown().x, pipe1.getSkullDown().y,
-                pipe1.getSkullDown().width, pipe1.getSkullDown().height);
-        shapeRenderer.rect(pipe2.getSkullDown().x, pipe2.getSkullDown().y,
-                pipe2.getSkullDown().width, pipe2.getSkullDown().height);
-        shapeRenderer.rect(pipe3.getSkullDown().x, pipe3.getSkullDown().y,
-                pipe3.getSkullDown().width, pipe3.getSkullDown().height); */
-
-        //shapeRenderer.end();
     }
 
     private void drawGrass() {
