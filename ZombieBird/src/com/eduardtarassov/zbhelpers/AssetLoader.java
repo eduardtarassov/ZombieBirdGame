@@ -31,7 +31,7 @@ public class AssetLoader {
         This is important because when our small pixel art is stretched to a larger size, each pixel will retain its
         shape rather than becoming blurry!
         */
-        texture = new Texture(Gdx.files.internal("ZombieBird-android/assets/data/texture.png"));
+        texture = new Texture(Gdx.files.internal("data/texture.png"));
         texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
 
         bg = new TextureRegion(texture, 0, 0, 136, 43);
@@ -61,13 +61,13 @@ public class AssetLoader {
         bar = new TextureRegion(texture, 136, 16, 22, 3);
         bar.flip(false, true);
 
-        dead = Gdx.audio.newSound(Gdx.files.internal("ZombieBird-android/assets/data/dead.wav"));
-        flap = Gdx.audio.newSound(Gdx.files.internal("ZombieBird-android/assets/data/flap.wav"));
-        coin = Gdx.audio.newSound(Gdx.files.internal("ZombieBird-android/assets/data/coin.wav"));
+        dead = Gdx.audio.newSound(Gdx.files.internal("data/dead.wav"));
+        flap = Gdx.audio.newSound(Gdx.files.internal("data/flap.wav"));
+        coin = Gdx.audio.newSound(Gdx.files.internal("data/coin.wav"));
 
-        font = new BitmapFont(Gdx.files.internal("ZombieBird-android/assets/data/text.fnt"));
+        font = new BitmapFont(Gdx.files.internal("data/text.fnt"));
         font.setScale(.25f, -.25f);
-        shadow = new BitmapFont(Gdx.files.internal("ZombieBird-android/assets/data/shadow.fnt"));
+        shadow = new BitmapFont(Gdx.files.internal("data/shadow.fnt"));
         shadow.setScale(.25f, -.25f);
 
 
