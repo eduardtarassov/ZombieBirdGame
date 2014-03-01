@@ -8,17 +8,17 @@ import com.eduardtarassov.zbhelpers.AssetLoader;
  * Created by Eduard on 2/26/14.
  */
 public class Bird {
-    /*
-     Vector2 is built-in LibGDX system that can hold two values: X component and Y component.
-     Position.x refers to the X coordinate, and position.y to the Y coordinate respectively.
-     Velocity.x would correspond to the speed in the X direction, and velocity.y to the speed in the Y direction respectively.
-     Acceleration just means change in velocity.
-    */                      //скорость  ускорение
-    private Vector2 position, velocity, acceleration;
 
-    private float rotation; // For handling bird rotation
+    private Vector2 position;
+    private Vector2 velocity;
+    private Vector2 acceleration;
+
+    private float rotation;
     private int width;
-    private int height;
+    private float height;
+
+    private float originalY;
+
     private boolean isAlive;
 
     private Circle boundingCircle;
@@ -26,6 +26,7 @@ public class Bird {
     public Bird(float x, float y, int width, int height) {
         this.width = width;
         this.height = height;
+        this.originalY = y;
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 460);
@@ -35,9 +36,9 @@ public class Bird {
 
     public void update(float delta) {
 
-        velocity.add(acceleration.cpy().scl(delta));  //We add our scaled acceleration vector to our velocity vector. In other words we multiply the acceleration vector by the delta, which is the amount of time that has passed since the update method was previously called.
+        velocity.add(acceleration.cpy().scl(delta));
 
-        if (velocity.y > 200) {  //Here we set the Bird max velocity cap.
+        if (velocity.y > 200) {
             velocity.y = 200;
         }
 
@@ -47,10 +48,11 @@ public class Bird {
             velocity.y = 0;
         }
 
-        position.add(velocity.cpy().scl(delta));  //We add our scaled velocity to the bird's position (this gives us new position).
+        position.add(velocity.cpy().scl(delta));
 
-
-        boundingCircle.set(position.x + 9, position.y + 6, 6.5f); //Set the circle's center to be (9, 6) with respect to the bird. Set the circle's radius to be 6.5f;
+        // Set the circle's center to be (9, 6) with respect to the bird.
+        // Set the circle's radius to be 6.5f;
+        boundingCircle.set(position.x + 9, position.y + 6, 6.5f);
 
         // Rotate counterclockwise
         if (velocity.y < 0) {
@@ -69,28 +71,19 @@ public class Bird {
             }
 
         }
+
     }
 
-    //We will use the isFalling method to decide when the bird should begin rotating downwards.
+    public void updateReady(float runTime) {
+        position.y = 2 * (float) Math.sin(7 * runTime) + originalY;
+    }
+
     public boolean isFalling() {
         return velocity.y > 110;
-
     }
 
-    //We will use the shouldntFlap method to determine when the bird should stop animating.
     public boolean shouldntFlap() {
         return velocity.y > 70 || !isAlive;
-    }
-
-    public void die() {
-        isAlive = false;
-        velocity.y = 0;
-    }
-
-
-    public void decelerate() {
-        // We want the bird to stop accelerating downwards once it is dead.
-        acceleration.y = 0;
     }
 
     public void onClick() {
@@ -98,6 +91,15 @@ public class Bird {
             AssetLoader.flap.play();
             velocity.y = -140;
         }
+    }
+
+    public void die() {
+        isAlive = false;
+        velocity.y = 0;
+    }
+
+    public void decelerate() {
+        acceleration.y = 0;
     }
 
     public void onRestart(int y) {
@@ -130,8 +132,12 @@ public class Bird {
         return rotation;
     }
 
-    public Circle getBoundingCircle() { return boundingCircle; }
+    public Circle getBoundingCircle() {
+        return boundingCircle;
+    }
 
-    public boolean isAlive() { return isAlive; }
+    public boolean isAlive() {
+        return isAlive;
+    }
 
 }
